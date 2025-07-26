@@ -1,0 +1,236 @@
+{ 
+  "layer": "top",
+  "height": 35,
+  "margin-top": 0,
+  "margin-left": 3,
+  "margin-bottom": 0,
+  "margin-right": 3,
+  "spacing": 0,
+
+  "modules-left": [
+    "custom/launcher",
+    "custom/separator",
+    "cpu",
+    "memory",
+    "temperature",
+    "custom/spotify",
+    "custom/separator"
+  ],
+  "modules-center": ["hyprland/workspaces"],
+  "modules-right": [
+    "hyprland/window",
+    "pulseaudio",
+    "network",
+    "clock"
+  ], 
+"custom/spotify": {
+  "format": "[{}]"
+  "return-type": "json",
+  "interval": 1,
+  "exec": "~/.config/waybar/scripts/spotify.sh",
+  "on-click": "playerctl -p spotify play-pause",
+  "on-click-right": "playerctl -p spotify next",
+  "on-click-middle": "playerctl -p spotify previous",
+  "tooltip": true
+},
+  "hyprland/window": {
+    "format": "[ {class} ]",
+    "rewrite": {
+      "(.*) - Mozilla Firefox": "🌎 $1",
+      "(.*) - zsh": "> [$1]"
+    }
+  },
+  "custom/playerctl": {
+      "format": "[<span foreground='#46c880'>  </span> <span>{}</span> ]",
+      "return-type": "json",
+      "max-length": 55,
+      "exec": "playerctl -a metadata --format '{\"text\": \"{{playerName}}\"}' -F",
+      "on-click": "playerctl play-pause",
+      "on-click-middle": "playerctl previous",
+      "on-click-right": "playerctl next",
+      "format-icons": {
+        "Playing": "<span foreground='#46c880'>  </span>",
+        "Paused": "<span foreground='#cdd6f4'> 󰏥 </span>",
+      },
+    },
+    "custom/uptime": {
+    "format": " {}",
+    "interval": 30,
+    "exec": "uptime -p | sed -e 's|up ||; s| days, |D/|; s| day, |D/|; s| hours, |H/|; s| hour, |H/|; s| minutes|M|; s| minute|M|' | sed 's/ //g'",
+    "on-click" : "",
+  },
+     "disk": {
+    "interval": 1,
+    "format": "<span color=\"#68b0d6\"> </span> {}%",
+    "on-click": "filelight /",
+    "on-click-right": "filelight /home/"
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "active": "",
+      "default": ""
+    },
+    "persistent-workspaces": {
+      "*": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  },
+
+/*
+  "oldhyprland/workspaces": {
+    "all-outputs": true,
+    "active-only": false,
+    "on-click": "activate",
+    "format": "{icon}",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": "",
+      "urgent": "",
+      "active": "",
+      "default": ""
+    }
+  },
+  */
+  "tray": {
+    "icon-size": 20,
+    "spacing": 8
+  },
+  "custom/filler": {
+    "format": " "
+  },
+  "custom/dot": {
+    "format": " "
+  },
+  "custom/clock-icon": {
+    "format": ""
+  },
+
+  "clock": {
+    "format": "<b>{:%I:%M %p }</b>",
+    "format-alt": "<b>{:%a.%d,%b}</b>",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  "cpu": {
+    "interval": 10,
+    "format": " {usage}% ",
+    "max-length": 10,
+    "on-click": "htop"
+  },
+  "memory": {
+    "interval": 30,
+    "format": " {}% ",
+    "format-alt": " {used:0.1f}G",
+    "max-length": 10,
+    "on-click-right": "htop"
+  },
+  "backlight": {
+    "device": "amdgpu_bl1",
+    "format": "{icon} {percent} ",
+    "tooltip": false,
+    "format-icons": ["", "", "", "", "", "", "", "", ""]
+  },
+  "network": {
+    "format-wifi": "󰒢 {essid}",
+    "format-alt" : "󰒢 {bandwidthTotalBits}",
+    "on-click": "kitty nmtui",
+    "on-click-right": "nm-connection-editor",
+    "format-ethernet": " wired",
+    "tooltip-format": "{essid} {signalStrength}%",
+    "format-disconnected": ""
+  },
+
+  "pulseaudio": {
+    "format": "{icon} <b>{volume}</b>",
+    "format-bluetooth": " {volume}",
+    "format-bluetooth-muted": " ",
+    "tooltip": false,
+    "format-muted": "",
+    "format-icons": {
+      "default": ["󰝟", "", "󰕾" , ""]
+    },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol"
+  },
+  "battery": {
+    "bat": "BAT0",
+    "interval": 10,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": " {icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-icons": ["", "", "", "", "", "", "", "", "", ""],
+    "max-length": 25,
+    "tooltip": false
+  },
+  "custom/right-arr": {
+    "format": "  "
+  },
+  "custom/launcher": {
+    "format": " 󰣇"
+  },
+  "custom/separator": {
+    "format": " "
+  },
+  "custom/window-name": {
+    "format": " <b>{}</b>",
+    "interval": 1,
+    "exec": "hyprctl activewindow | grep class | awk '{print $2}'"
+  },
+
+ "custom/pacman": {
+   "format": "  ",
+   "on-click": "blueberry"
+ },
+  "custom-pacman-update-icon-background": {
+    "format": ""
+  },
+  "custom/pacman-update-icon": {
+    "format": ""
+  },
+  "custom/pacman-update": {
+    "format": " {}",
+    "interval": 3600,
+    "exec": "checkupdates | wc -l",
+    "signal": 8
+  },
+  "custom/window-icon": {},
+
+  "temperature": {
+    "thermal-zone": 0,
+    "critical-threshold": 80,
+    "format-critical": " {temperatureC}°C",
+    "format": " {temperatureC}°C"
+  },
+
+  "custom/wrap-left": {
+    "format": "<b>[</b>"
+  },
+
+  "custom/wrap-right": {
+    "format": "<b>]</b>"
+  }
+}

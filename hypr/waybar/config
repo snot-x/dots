@@ -1,0 +1,25 @@
+{
+    "include": "~/.config/hypr/waybar/modules",
+    "name": "main-bar", 
+    "id": "main-bar", 	
+    "layer": "top", 	
+    "exclusive": true, 	
+    "passthrough": false, 
+    "position": "top", 	
+    "height": 36, 		
+    "width": "", 		
+    "spacing": 6, 		
+    "margin": 0, 		
+    "margin-top": 0, 	
+    "margin-bottom": 0, 
+    "margin-left": 0, 	
+    "margin-right": 0, 	
+    "font": "Comic Mono",
+    "opacity": "0.9",
+    "fixed-center": true, 
+    "ipc": true, 		
+ 
+    "modules-left": ["custom/menu", "cpu", "memory", "custom/themes", "tray"],
+    "modules-center": ["hyprland/workspaces", "custom/spotify"],
+    "modules-right": ["pulseaudio", "bluetooth", "clock", "custom/power"]
+}

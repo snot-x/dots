@@ -1,0 +1,57 @@
+// Copyright (C) 2020-2024 Aditya Shakya <adi1090x@gmail.com>
+//
+// Waybar config file
+{
+    "include": "~/.config/hypr/waybar/modules",
+    "name": "main-bar", 
+    "id": "main-bar", 	
+    "layer": "top", 	
+    //"mode": "dock", 	
+    "exclusive": true, 	
+    "passthrough": false, 
+    "position": "top", 	
+    "height": 32, 		
+    "width": "", 		
+    "spacing": 6, 		
+    "margin": 0, 		
+    "margin-top": 0, 	
+    "margin-bottom": 0, 
+    "margin-left": 0, 	
+    "margin-right": 0, 	
+    "fixed-center": true, 
+    "ipc": true,
+    "reload_style_on_change": true,
+ 
+    "modules-left": ["cpu", "memory","hyprland/workspaces"], 
+    "modules-center": [ "mpd" ],
+    //"modules-center": ["hyprland/workspaces", "custom/spotify", "tray"],
+    "modules-right": ["group/audio-devices", "clock", "group/custom-drawer"],
+
+    "group/audio-devices": {
+      "orientation": "horizontal",
+      "modules": [
+        "pulseaudio",
+        "bluetooth"
+      ],
+      "drawer": {
+        "transition-duration": 500,
+        "children-class": "audio-drawer-item",
+        "transition-left-to-right": false
+      }
+    },
+
+    "group/custom-drawer": {
+      "orientation": "horizontal",
+      "modules": [
+        "custom/menu",
+        "custom/themes",
+        "custom/power"
+      ],
+      "drawer": {
+        "transition-duration": 500,
+        "children-class": "custom-drawer-item",
+        "transition-left-to-right": false,
+        "always-show": "custom/menu"
+      }
+    }
+}

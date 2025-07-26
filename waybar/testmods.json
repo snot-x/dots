@@ -1,0 +1,4 @@
+{
+    "include": "~/.config/waybar/modules",
+    "modules-left": ["pulseaudio", "bluetooth", "group/audio-devices"]
+}
