@@ -86,7 +86,7 @@
 	"noise_reduction": 0.77,
 	"input_delay": 2,
         "hide_on_silence": true,
-	"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+	"format-icons": [" ", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
 	"actions": {
 	    "on-click-right": "mode"
 	}
@@ -184,5 +184,5 @@
             "car": "",
             "default": ["", "", ""]
         }
-    },
+    }
 }
